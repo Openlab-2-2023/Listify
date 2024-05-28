@@ -1,5 +1,4 @@
 
-
 document.getElementById('add-button').addEventListener('click', () => {
     addItem();
     saveItems();
@@ -48,6 +47,8 @@ function saveItems() {
     });
     localStorage.setItem('items', JSON.stringify(items));
 }
+
+/* NACITANIE POLOZIEK */
 
 function loadItems() {
     const items = JSON.parse(localStorage.getItem('items')) || [];
