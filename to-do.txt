@@ -1,7 +1,7 @@
 1. Prerobit navrh ktory vytvoril chatgpt
 2. Pridat counter k polozkam a pripadne cenu
 3. Pridat counter kolko poloziek mam v liste a pripadne celkovu cenu
-4. Pridat tlacidlo ktore odklikne, ze je polozka splnena
+    4. Pridat tlacidlo ktore odklikne, ze je polozka splnena
 5. Aby ukladalo aj na telefóne keď to zadáme na kompe
 6. Pridat jednoduchy popis, copyright atd...
 7. Pridat svetlu/temnu temu

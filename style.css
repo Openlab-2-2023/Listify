@@ -63,6 +63,28 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+li.completed {
+    text-decoration: line-through;
+    color: grey;
+}
+
+li.deleting {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.5);
+    }
 }
 
 li .delete-button,
