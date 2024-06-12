@@ -10,8 +10,6 @@ document.getElementById('item-input').addEventListener('keypress', function (e) 
     }
 });
 
-/* PRIDAVANIE POLOZIEK */
-
 function addItem() {
     const itemInput = document.getElementById('item-input');
     const itemText = itemInput.value.trim();
@@ -20,7 +18,15 @@ function addItem() {
         const itemList = document.getElementById('item-list');
 
         const li = document.createElement('li');
-        li.textContent = itemText;
+
+        const textSpan = document.createElement('span');
+        textSpan.textContent = itemText;
+
+        const timestamp = document.createElement('div');
+        timestamp.style.fontSize = '0.8em';
+        timestamp.style.color = 'grey';
+        const now = new Date();
+        timestamp.textContent = `${now.toLocaleString()}`;
 
         const checkButton = document.createElement('button');
         checkButton.className = 'check-button';
@@ -46,6 +52,8 @@ function addItem() {
         buttonContainer.appendChild(checkButton);
         buttonContainer.appendChild(deleteButton);
 
+        li.appendChild(textSpan);
+        li.appendChild(timestamp);
         li.appendChild(buttonContainer);
         itemList.appendChild(li);
 
@@ -53,20 +61,17 @@ function addItem() {
     }
 }
 
-/* UKLADANIE POLOZIEK */
-
 function saveItems() {
     const items = [];
     document.querySelectorAll('#item-list li').forEach(li => {
         items.push({
-            text: li.firstChild.textContent.trim(),
+            text: li.querySelector('span').textContent.trim(),
+            timestamp: li.querySelector('div').textContent.replace('Added on: ', '').trim(),
             completed: li.classList.contains('completed')
         });
     });
     localStorage.setItem('items', JSON.stringify(items));
 }
-
-/* NACITANIE POLOZIEK */
 
 function loadItems() {
     const items = JSON.parse(localStorage.getItem('items')) || [];
@@ -74,10 +79,17 @@ function loadItems() {
         const itemList = document.getElementById('item-list');
 
         const li = document.createElement('li');
-        li.textContent = item.text;
+
+        const textSpan = document.createElement('span');
+        textSpan.textContent = item.text;
         if (item.completed) {
             li.classList.add('completed');
         }
+
+        const timestamp = document.createElement('div');
+        timestamp.style.fontSize = '0.8em';
+        timestamp.style.color = 'grey';
+        timestamp.textContent = `Added on: ${item.timestamp}`;
 
         const checkButton = document.createElement('button');
         checkButton.className = 'check-button';
@@ -103,6 +115,8 @@ function loadItems() {
         buttonContainer.appendChild(checkButton);
         buttonContainer.appendChild(deleteButton);
 
+        li.appendChild(textSpan);
+        li.appendChild(timestamp);
         li.appendChild(buttonContainer);
         itemList.appendChild(li);
     });

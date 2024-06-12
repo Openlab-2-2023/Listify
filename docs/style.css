@@ -21,7 +21,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 1000px;
     margin: 20px auto;
     text-align: center;
 }
@@ -37,6 +37,17 @@ button {
     width: 80%;
     border: 1px solid #ddd;
     border-radius: 4px;
+}
+
+textarea {
+    padding: 10px;
+    margin: 5px 0;
+    width: 80%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    height: 50px;
+    max-height: 300px;
 }
 
 button {
@@ -141,6 +152,7 @@ label {
     box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.4), inset 0px -5px 15px rgba(255, 255, 255, 0.4);
     cursor: pointer;
     transition: 0.3s;
+    margin-left: 45%;
 }
 
 label::after {
@@ -204,7 +216,7 @@ body.dark-mode .delete-button {
 }
 
 body.dark-mode button:hover {
-    background-color: #4cae4c;
+    background-color: #c0c0c0;
 }
 
 body.dark-mode li {
@@ -222,5 +234,10 @@ body.dark-mode label {
 }
 
 body.dark-mode label::after {
-    background: linear-gradient(100deg, #999999, #666666);
+    background: linear-gradient(100deg, #777, #3a3a3a);
 }
+
+.dark-mode .check-button {
+    background-color: green;
+}
+
