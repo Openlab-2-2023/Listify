@@ -12,7 +12,9 @@ document.getElementById('item-input').addEventListener('keypress', function (e) 
 
 function addItem() {
     const itemInput = document.getElementById('item-input');
+    const categorySelect = document.getElementById('category-select');
     const itemText = itemInput.value.trim();
+    const category = categorySelect.value;
 
     if (itemText !== '') {
         const itemList = document.getElementById('item-list');
@@ -20,7 +22,7 @@ function addItem() {
         const li = document.createElement('li');
 
         const textSpan = document.createElement('span');
-        textSpan.textContent = itemText;
+        textSpan.textContent = `${itemText} [${category}]`;
 
         const timestamp = document.createElement('div');
         timestamp.style.fontSize = '0.8em';
@@ -66,7 +68,7 @@ function saveItems() {
     document.querySelectorAll('#item-list li').forEach(li => {
         items.push({
             text: li.querySelector('span').textContent.trim(),
-            timestamp: li.querySelector('div').textContent.replace('Added on: ', '').trim(),
+            timestamp: li.querySelector('div').textContent.trim(),
             completed: li.classList.contains('completed')
         });
     });
@@ -89,7 +91,7 @@ function loadItems() {
         const timestamp = document.createElement('div');
         timestamp.style.fontSize = '0.8em';
         timestamp.style.color = 'grey';
-        timestamp.textContent = `Added on: ${item.timestamp}`;
+        timestamp.textContent = item.timestamp;
 
         const checkButton = document.createElement('button');
         checkButton.className = 'check-button';
@@ -122,8 +124,21 @@ function loadItems() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', loadItems);
-
-document.getElementById('darkmode-toggle').addEventListener('change', function () {
-    document.body.classList.toggle('dark-mode', this.checked);
+window.addEventListener('load', () => {
+    loadItems();
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+    }
+    document.getElementById('darkmode-toggle').addEventListener('change', function () {
+        if (this.checked) {
+            document.body.classList.add('dark-mode');
+            localStorage.setItem('darkMode', 'true');
+        } else {
+            document.body.classList.remove('dark-mode');
+            localStorage.setItem('darkMode', 'false');
+        }
+    });
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.getElementById('darkmode-toggle').checked = true;
+    }
 });
